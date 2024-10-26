@@ -1,0 +1,139 @@
+
+{% extends 'admin/admin_home.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Locations</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+{#        img {#}
+{#            width: 100px;#}
+{#            height: 100px;#}
+{#            object-fit: cover;#}
+{#        }#}
+
+        .actions button {
+            padding: 8px 12px;
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .edit {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .delete {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .edit:hover {
+            background-color: #0b7dda;
+        }
+
+        .delete:hover {
+            background-color: #da190b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+<div>
+    <a href="/admin_add_place" class="btn btn-info">Add New</a>
+</div>
+    <h1>View Locations</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Place</th>
+                <th>Image</th>
+
+                <th>Speciality</th>
+                <th>Description</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in data %}
+            <tr>
+                <td>{{ i.name }}</td>
+                <td>{{ i.place }}</td>
+                <td><img src="{{ i.image }}" width="200px" height="200px" alt="Image"></td>
+
+                <td>{{ i.speciality }}</td>
+                <td>{{ i.description }}</td>
+<td>
+    <a href="https://www.google.com/maps?q={{ i.latitude }},{{ i.longitude }}" target="_blank">
+        View on Map
+    </a>
+</td>
+                <td class="actions">
+{#                    <button class="edit">Edit</button>#}
+                    <a href="/delete_place/{{ i.id }}" class="btn btn-danger">Delete</a>
+{#                    <button class="delete">Delete</button>#}
+                </td>
+            </tr>
+        {% endfor %}
+
+            <!-- More rows can be added dynamically from backend -->
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+{% endblock %}

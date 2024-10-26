@@ -1,0 +1,39 @@
+{% extends 'admin/admin_home.html' %}  <!-- Assuming 'base.html' is your main template -->
+
+{% block body %}
+<div class="container mt-4">
+<div>
+    <a href="/admin_add_guide" class="btn btn-info">Add New</a>
+</div>
+    <h2 class="text-center">Guide List</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Place</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Post</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for guide in guides %}
+            <tr>
+                <td>{{ guide.name }}</td>
+                <td>{{ guide.place }}</td>
+                <td>{{ guide.email }}</td>
+                <td>{{ guide.phone }}</td>
+                <td>{{ guide.post }}</td>
+                <td>{{ guide.price }}</td>
+            <td><a href="/delete_guide/{{ guide.id }}" class="btn btn-info" onclick="return confirm('Are You Sure :{{ guide.name }}')">Delete</a> </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No guides available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{#{% extends 'user/userindex.html' %}#}
+{#{% block body %}#}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Book Room</title>#}
+{#    <!-- Add Bootstrap CSS -->#}
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">#}
+{#</head>#}
+{#<body>#}
+{##}
+{#<div class="container">#}
+{#    <div class="row justify-content-center">#}
+{#        <div class="col-md-6 mt-5">#}
+{#            <h3 class="text-center mb-4">Book a Room</h3>#}
+{#            <form method="post" action="/user_book_hotel_post">{% csrf_token %}#}
+{#                <div class="form-group">#}
+{#                    <label for="number">Number of rooms</label>#}
+{#                    <input type="hidden" name="id" required minlength="1" value="{{ data.id }}">#}
+{#                    <input type="number" class="form-control" name="number" required minlength="1" value="1">#}
+{#                </div>#}
+{#                <div class="text-center">#}
+{#                    <input type="submit"  value="Book" class="btn btn-info">#}
+{#                </div>#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{##}
+{#<!-- Add Bootstrap JS and dependencies -->#}
+{#<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>#}
+{#<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>#}
+{##}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+
+{% extends 'user/userindex.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Room</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mt-5">
+            <h3 class="text-center mb-4">Book a Room</h3>
+            <form method="post" action="/user_book_hotel_post" onsubmit="return validateRooms()">{% csrf_token %}
+                <div class="form-group">
+                    <label for="number">Number of rooms</label>
+                    <input type="hidden" name="id" required minlength="1" value="{{ data.id }}">
+                    <input type="number" class="form-control" id="roomNumber" name="number" required minlength="1" value="1" min="1" max="8">
+                </div>
+                <div class="text-center">
+                    <input type="submit" value="Book" class="btn btn-info">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- JavaScript Validation -->
+<script>
+    function validateRooms() {
+        const roomNumber = document.getElementById("roomNumber").value;
+        if (roomNumber > 8) {
+            alert("You cannot book more than 8 rooms.");
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+    }
+</script>
+
+</body>
+</html>
+{% endblock %}

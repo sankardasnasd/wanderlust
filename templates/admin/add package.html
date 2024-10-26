@@ -1,0 +1,107 @@
+{% extends 'admin/admin_home.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Item</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        button {
+            display: block;
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Add New Package</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="id_name">Name</label>
+                <input type="text" id="id_name" name="name" placeholder="Enter item name" pattern="[a-z A-Z]+" required>
+            </div>
+
+            <!-- Place Field -->
+            <div class="form-group">
+                <label for="id_PLACE">Place</label>
+                <select id="id_PLACE" name="PLACE" required >
+                    {% for i in data %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Image Field -->
+            <div class="form-group">
+                <label for="id_image">Image</label>
+                <input type="file" id="id_image" name="image" placeholder="Enter image URL" required>
+            </div>
+<div class="form-group">
+                <label for="id_image">Number Of Days</label>
+                <input type="number" id="id_image" name="number_days" placeholder="Enter Days" min="1" max="30" required>
+            </div>
+
+            <!-- Price Field -->
+            <div class="form-group">
+                <label for="id_price">Price</label>
+                <input type="text" id="id_price" name="price" placeholder="Enter item price" required
+       pattern="^\d+(\.\d{1,2})?$" title="Please enter a valid price (e.g., 100 or 100.50)">
+
+            </div>
+
+            <!-- Description Field -->
+            <div class="form-group">
+                <label for="id_description">Description</label>
+                <textarea id="id_description" name="description" rows="4" placeholder="Enter item description" required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" name="submit">Add Item</button>
+        </form>
+    </div>
+
+</body>
+</html>
+{% endblock %}

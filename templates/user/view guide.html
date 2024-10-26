@@ -1,0 +1,53 @@
+{% extends 'user/userindex.html' %}  <!-- Assuming 'base.html' is your main template -->
+
+{% block body %}
+    <form method="post" action="/user_view_guide_post#b">{% csrf_token %}
+    <div class="container mt-4">
+
+    <h2 class="text-center">Guide List</h2>
+<table>
+    <tr>
+        <th><input type="text" name="name" class="form-control" placeholder="Enter Guide Name"></th>
+        <th><input type="submit" name="" class="btn btn-info" value="Search"></th>
+    </tr>
+</table>
+<br>
+<br>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Place</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Post</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for guide in guides %}
+            <tr>
+                <td>{{ guide.name }}</td>
+                <td>{{ guide.place }}</td>
+                <td>{{ guide.email }}</td>
+                <td>{{ guide.phone }}</td>
+                <td>{{ guide.post }}</td>
+                <td>{{ guide.price }}</td>
+                <td><a href="/user_book_guide/{{ guide.id }}#b" class="btn btn-primary">Book</a> </td>
+                <td><a href="/user_chat_to_guide/{{ guide.LOGIN.id }}#b" class="btn btn-success">Chat</a> </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No guides available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    </form>
+{% endblock %}

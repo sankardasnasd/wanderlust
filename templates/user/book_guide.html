@@ -1,0 +1,55 @@
+{% extends 'user/userindex.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book a Guide</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mt-5">
+            <!-- Card for a polished look -->
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3>Book a Guide</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="/user_book_guide_post" onsubmit="return validateRooms()">
+                        {% csrf_token %}
+
+                        <!-- Package selection field -->
+                        <div class="form-group">
+                            <label for="package">Choose Package</label>
+                            <input type="hidden" name="id" value="{{ data.id }}">
+                            <select class="form-control" name="package" id="package" required>
+                                <option value="" disabled selected>Select a package</option>
+                                {% for i in data1 %}
+                                <option value="{{ i.id }}">{{ i.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info">Book Guide</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+{% endblock %}

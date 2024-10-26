@@ -1,0 +1,295 @@
+{##}
+{#{% extends 'user/userindex.html' %}#}
+{#{% block body %}#}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>View Items</title>#}
+{#    <style>#}
+{#        body {#}
+{#            font-family: Arial, sans-serif;#}
+{#            background-color: #f4f4f4;#}
+{#        }#}
+{#        table {#}
+{#            width: 100%;#}
+{#            border-collapse: collapse;#}
+{#            margin: 20px 0;#}
+{#            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);#}
+{#        }#}
+{#        table, th, td {#}
+{#            border: 1px solid #ccc;#}
+{#        }#}
+{#        th, td {#}
+{#            padding: 10px;#}
+{#            text-align: left;#}
+{#        }#}
+{#        th {#}
+{#            background-color: #f2f2f2;#}
+{#        }#}
+{#        h1 {#}
+{#            text-align: center;#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#<br>#}
+{#<br>#}
+{#<br>#}
+{##}
+{#<form action="/user_view_packages_post#b" method="post">{% csrf_token %}#}
+{#    <h1>Packages List</h1>#}
+{#<table>#}
+{#        <tr>#}
+{#        <th>Place</th>#}
+{#        <th>#}
+{#            <select name="place" class="form-control" required>#}
+{#                            <option value="" >----SELECT---</option>#}
+{##}
+{#                {% for i in data %}#}
+{#                <option value="{{ i.id }}">{{ i.name }}</option>#}
+{#                {% endfor %}#}
+{#            </select>#}
+{#        </th>#}
+{#        <th><input type="submit" class="btn btn-success"></th>#}
+{#    </tr>#}
+{##}
+{#</table>#}
+{##}
+{#    <table>#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Name</th>#}
+{#                <th>Place</th>#}
+{#                <th>Image</th>#}
+{#                <th>Price</th>#}
+{#                <th>Number Of Days</th>#}
+{#                <th>Description</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for item in items %}#}
+{#            <tr>#}
+{#                <td>{{ item.name }}</td>#}
+{#                <td>{{ item.PLACE.name }}</td>#}
+{#                <td><img src="{{ item.image }}" alt="Item image" style="width: 100px; height: auto;"></td>#}
+{#                <td>{{ item.price }}</td>#}
+{#                <td>{{ item.number_days }}</td>#}
+{#                <td>{{ item.description }}</td>#}
+{#            <td><a href="/user_book_packages_post/{{ item.id }}#a" class="btn btn-info" onclick="return confirm('Are  you Sure to Book :{{ item.name }}')">Book</a> </td>#}
+{#            </tr>#}
+{#            {% empty %}#}
+{#            <tr>#}
+{#                <td colspan="5">No items available</td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#</form>#}
+{##}
+{#</body>#}
+{#</html>#}
+{##}
+{#{% endblock %}#}
+{##}
+{##}
+{#{% extends 'user/userindex.html' %}#}
+{#{% block body %}#}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>View Items</title>#}
+{#    <style>#}
+{#        body {#}
+{#            font-family: Arial, sans-serif;#}
+{#            background-color: #f4f4f4;#}
+{#        }#}
+{#        table {#}
+{#            width: 100%;#}
+{#            border-collapse: collapse;#}
+{#            margin: 20px 0;#}
+{#            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);#}
+{#        }#}
+{#        table, th, td {#}
+{#            border: 1px solid #ccc;#}
+{#        }#}
+{#        th, td {#}
+{#            padding: 10px;#}
+{#            text-align: left;#}
+{#        }#}
+{#        th {#}
+{#            background-color: #f2f2f2;#}
+{#        }#}
+{#        h1 {#}
+{#            text-align: center;#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#<br>#}
+{#<br>#}
+{#<br>#}
+{##}
+{#<form action="/user_view_packages_post#b" method="post">{% csrf_token %}#}
+{#    <h1>Packages List</h1>#}
+{#    <table>#}
+{#        <tr>#}
+{#            <th>Place</th>#}
+{#            <th>#}
+{#                <select name="place" class="form-control" >#}
+{#                    <option value="">----SELECT---</option>#}
+{#                    {% for i in data %}#}
+{#                        <option value="{{ i.id }}">{{ i.name }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#             <th>Min Price</th>#}
+{#            <th><input type="number" name="min_price" class="form-control" step="0.01" placeholder="Enter minimum price"></th>#}
+{#          <th>Max Price</th>#}
+{#            <th><input type="number" name="max_price" class="form-control" step="0.01" placeholder="Enter maximum price"></th>#}
+{##}
+{#            <th>#}
+{#                <input type="submit" class="btn btn-success" value="Filter">#}
+{#            </th>#}
+{#        </tr>#}
+{#    </table>#}
+{##}
+{##}
+{#    <table>#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Name</th>#}
+{#                <th>Place</th>#}
+{#                <th>Image</th>#}
+{#                <th>Price</th>#}
+{#                <th>Number Of Days</th>#}
+{#                <th>Description</th>#}
+{#                <th>Action</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#            {% for item in items %}#}
+{#            <tr>#}
+{#                <td>{{ item.name }}</td>#}
+{#                <td>{{ item.PLACE.name }}</td>#}
+{#                <td><img src="{{ item.image }}" alt="Item image" style="width: 100px; height: auto;"></td>#}
+{#                <td>{{ item.price }}</td>#}
+{#                <td>{{ item.number_days }}</td>#}
+{#                <td>{{ item.description }}</td>#}
+{#                <td><a href="/user_book_packages_post/{{ item.id }}#a" class="btn btn-info" onclick="return confirm('Are you sure to Book: {{ item.name }}?')">Book</a></td>#}
+{#            </tr>#}
+{#            {% empty %}#}
+{#            <tr>#}
+{#                <td colspan="7">No items available</td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{##}
+{##}
+{#</form>#}
+{##}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+
+{% extends 'user/userindex.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Items</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+
+    <form action="/user_view_packages_post#b" method="post">{% csrf_token %}
+        <h1>Packages List</h1>
+        <table>
+            <tr>
+                <th>Place</th>
+                <th>
+                    <select name="place" class="form-control" >
+                        <option value="">----SELECT---</option>
+                        {% for i in data %}
+                            <option value="{{ i.id }}">{{ i.name }}</option>
+                        {% endfor %}
+                    </select>
+                </th>
+                <th>Min Price</th>
+                <th><input type="number" name="min_price" class="form-control" step="0.01" placeholder="Enter minimum price"></th>
+                <th>Max Price</th>
+                <th><input type="number" name="max_price" class="form-control" step="0.01" placeholder="Enter maximum price"></th>
+                <th>
+                    <input type="submit" class="btn btn-success" value="Filter">
+                </th>
+            </tr>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Place</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Number Of Days</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.PLACE.name }}</td>
+                    <td><img src="{{ item.image }}" alt="Item image" style="width: 100px; height: auto;"></td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.number_days }}</td>
+                    <td>{{ item.description }}</td>
+                    <td><a href="/user_book_packages_post/{{ item.id }}#a" class="btn btn-info" onclick="return confirm('Are you sure to Book: {{ item.name }}?')">Book</a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7">No items available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+
+</body>
+</html>
+{% endblock %}

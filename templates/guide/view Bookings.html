@@ -1,0 +1,79 @@
+
+{% extends 'guide/guideindex.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bookings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+    <div class="container">
+        <h1>Booking List</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Package Name</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in data %}
+                <tr>
+                    <td>{{ user.USER.name }}</td>
+                    <td>{{ user.PACKAGE.name }}</td>
+                    <td>{{ user.date }}</td>
+                    <td>{{ user.total }}</td>
+                    <td>{{ user.status }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No Booking available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<br>
+<br>
+<br>
+<br>
+
+</body>
+</html>
+{% endblock %}

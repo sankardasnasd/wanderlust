@@ -1,0 +1,101 @@
+{% extends 'admin/admin_home.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Item</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        button {
+            display: block;
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Add New Guide</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="id_name">Name</label>
+                <input type="text" id="id_name" name="name" placeholder="Enter  name" required  pattern="[a-z A-Z]+">
+            </div>
+
+            <div class="form-group">
+                <label for="id_name">Place</label>
+                <input type="text" id="" name="place" placeholder="Enter place" required pattern="[a-z A-Z]+">
+            </div><div class="form-group">
+                <label for="id_name">Post</label>
+                <input type="text" id="" name="post" placeholder="Enter Post" required pattern="[a-z A-Z]+">
+            </div>
+
+            <div class="form-group">
+                <label for="">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+                    <label for="phone">Phone</label>
+                <input type="text" id="phone" name="phone" placeholder="Enter Phone" pattern="[6789][0-9]{9}" required>
+            </div>
+            <div class="form-group">
+                    <label for="phone">Price</label>
+                <input type="number" id="phone" name="price" placeholder="Enter Price"  required>
+            </div>
+
+            <!-- Place Field -->
+
+            <!-- Image Field -->
+
+
+            <!-- Description Field -->
+
+            <!-- Submit Button -->
+            <button type="submit" name="submit">Add Item</button>
+        </form>
+    </div>
+
+</body>
+</html>
+{% endblock %}

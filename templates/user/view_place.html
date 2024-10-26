@@ -1,0 +1,215 @@
+{##}
+{#{% extends 'user/userindex.html' %}#}
+{#{% block body %}#}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>View Locations</title>#}
+{#    <style>#}
+{#        body {#}
+{#            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;#}
+{#            background-color: #f4f4f4;#}
+{#            margin: 0;#}
+{#            padding: 0;#}
+{#        }#}
+{##}
+{##}
+{##}
+{#        h1 {#}
+{#            text-align: center;#}
+{#            color: #333;#}
+{#        }#}
+{##}
+{#        table {#}
+{#            width: 100%;#}
+{#            border-collapse: collapse;#}
+{#            margin-top: 20px;#}
+{#        }#}
+{##}
+{#        th, td {#}
+{#            padding: 12px;#}
+{#            text-align: center;#}
+{#            border-bottom: 1px solid #ddd;#}
+{#        }#}
+{##}
+{#        th {#}
+{#            background-color: #4CAF50;#}
+{#            color: white;#}
+{#        }#}
+{##}
+{#        tr:nth-child(even) {#}
+{#            background-color: #f2f2f2;#}
+{#        }#}
+{##}
+{#        tr:hover {#}
+{#            background-color: #ddd;#}
+{#        }#}
+{##}
+{#        img {#}
+{#            width: 100px;#}
+{#            height: 100px;#}
+{#            object-fit: cover;#}
+{#        }#}
+{##}
+{#        .actions button {#}
+{#            padding: 8px 12px;#}
+{#            margin: 5px;#}
+{#            border: none;#}
+{#            border-radius: 6px;#}
+{#            cursor: pointer;#}
+{#            font-size: 14px;#}
+{#        }#}
+{##}
+{#        .edit {#}
+{#            background-color: #2196F3;#}
+{#            color: white;#}
+{#        }#}
+{##}
+{#        .delete {#}
+{#            background-color: #f44336;#}
+{#            color: white;#}
+{#        }#}
+{##}
+{#        .edit:hover {#}
+{#            background-color: #0b7dda;#}
+{#        }#}
+{##}
+{#        .delete:hover {#}
+{#            background-color: #da190b;#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#<br>#}
+{#<br>#}
+{#<br>#}
+{##}
+{#<div class="container">#}
+{#    <h1>View Places</h1>#}
+{#<table>#}
+{#    <tr>#}
+{#        <th><input type="text" name="name" placeholder="Search Place"> </th>#}
+{#        <th><input type="submit"  value="Search" class="btn btn-info"> </th>#}
+{#    </tr>#}
+{#</table>#}
+{#    <table>#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Name</th>#}
+{#                <th>Place</th>#}
+{#                <th>Image</th>#}
+{##}
+{#                <th>Speciality</th>#}
+{#                <th>Description</th>#}
+{#                <th colspan="2">Actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for i in data %}#}
+{#            <tr>#}
+{#                <td>{{ i.name }}</td>#}
+{#                <td>{{ i.place }}</td>#}
+{#                <td><img src="{{ i.image }}" width="200px" height="200px" alt="Image"></td>#}
+{##}
+{#                <td>{{ i.speciality }}</td>#}
+{#                <td>{{ i.description }}</td>#}
+{#<td>#}
+{#    <a href="https://www.google.com/maps?q={{ i.latitude }},{{ i.longitude }}" target="_blank">#}
+{#        View on Map#}
+{#    </a>#}
+{#</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{##}
+{#            <!-- More rows can be added dynamically from backend -->#}
+{#        </tbody>#}
+{#    </table>#}
+{#</div>#}
+{##}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+
+{% extends 'user/userindex.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Locations</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            margin-top: 20px;
+            text-align: center;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>View Places</h1>
+
+    <form method="POST" class="mb-4" action="/user_view_place_post#b">
+        {% csrf_token %}
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <input type="text" name="name" class="form-control mb-2" placeholder="Search Place">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-info mb-2">Search</button>
+            </div>
+        </div>
+
+
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>Name</th>
+                <th>Place</th>
+                <th>Image</th>
+                <th>Speciality</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in data %}
+            <tr>
+                <td>{{ i.name }}</td>
+                <td>{{ i.place }}</td>
+                <td><img src="{{ i.image }}" alt="Image"></td>
+                <td>{{ i.speciality }}</td>
+                <td>{{ i.description }}</td>
+                <td>
+                    <a href="https://www.google.com/maps?q={{ i.latitude }},{{ i.longitude }}" target="_blank" class="btn btn-primary btn-sm">
+                        View on Map
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+      </form>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}

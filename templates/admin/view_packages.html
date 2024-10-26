@@ -1,0 +1,77 @@
+
+{% extends 'admin/admin_home.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Items</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Packages List</h1>
+    <div>
+        <a href="/admin_add_package" class="btn btn-primary">Add New</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Place</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Number Of Days</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.PLACE.name }}</td>
+                <td><img src="{{ item.image }}" alt="Item image" style="width: 100px; height: auto;"></td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.number_days }}</td>
+                <td>{{ item.description }}</td>
+            <td><a href="/delete_packages/{{ item.id }}" class="btn btn-info">Delete</a> </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No items available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
+
+{% endblock %}

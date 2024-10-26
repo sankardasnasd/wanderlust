@@ -1,0 +1,80 @@
+
+{% extends 'user/userindex.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bookings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Booking List</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Hotel Name</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Total Rooms</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.HOTEL.name }}</td>
+                    <td>{{ user.date }}</td>
+                    <td>{{ user.price }}</td>
+                    <td>{{ user.number_rooms }}</td>
+                    <td>
+
+                        {% if user.status == 'paid' %}
+                     <strong> <p style="color: green">  {{ user.status }}</p></strong>
+
+                    {% else %}<a href="/user_pay_proceed/{{ user.id }}/{{ user.price }}" class="btn btn-success">Pay</a>
+{% endif %}
+                    </td>
+
+
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No Booking available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
+{% endblock %}
